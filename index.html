@@ -260,21 +260,26 @@
           </div>
 
           <!-- 匯率自訂設定列 -->
-          <div class="bg-orange-50/70 p-3 rounded-2xl border border-orange-200 space-y-2">
+          <div class="bg-orange-50/70 p-3.5 rounded-2xl border border-orange-200 space-y-2.5">
             <div class="flex items-center justify-between text-xs">
               <span class="font-bold text-slate-700">當前匯率設定 (1 JPY = ? TWD)</span>
               <div class="flex items-center gap-1">
-                <input type="number" id="custom-rate-input" step="0.0001" value="0.215" oninput="changeCustomRate(this.value)" class="w-20 px-2 py-1 rounded-xl border-2 border-orange-300 font-black text-rose-600 text-center bg-white focus:outline-rose-400">
+                <input type="number" id="custom-rate-input" step="0.001" value="0.215" oninput="changeCustomRate(this.value)" class="w-20 px-2 py-1 rounded-xl border-2 border-orange-300 font-black text-rose-600 text-center bg-white focus:outline-rose-400">
                 <span class="font-bold text-slate-500">台幣</span>
               </div>
             </div>
-            <!-- 常用匯率快捷切換 -->
-            <div class="flex items-center gap-1.5 pt-1 text-[11px]">
-              <span class="text-slate-400 font-bold">快捷切換：</span>
-              <button onclick="setQuickRate(0.210)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.210</button>
-              <button onclick="setQuickRate(0.215)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.215</button>
-              <button onclick="setQuickRate(0.220)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.220</button>
-              <button onclick="setQuickRate(0.225)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.225</button>
+            <!-- 常用匯率快捷切換 (0.19 ~ 0.22) -->
+            <div class="space-y-1.5 pt-1 text-[11px]">
+              <div class="text-slate-500 font-bold">⚡ 快捷匯率切換：</div>
+              <div class="flex flex-wrap items-center gap-1.5">
+                <button onclick="setQuickRate(0.19)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.19</button>
+                <button onclick="setQuickRate(0.195)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.195</button>
+                <button onclick="setQuickRate(0.2)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.2</button>
+                <button onclick="setQuickRate(0.205)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.205</button>
+                <button onclick="setQuickRate(0.21)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.21</button>
+                <button onclick="setQuickRate(0.215)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.215</button>
+                <button onclick="setQuickRate(0.22)" class="px-2.5 py-1 bg-white border border-orange-200 rounded-xl text-slate-700 hover:bg-rose-50 hover:text-rose-600 hover:border-rose-300 font-black cute-btn shadow-sm">0.22</button>
+              </div>
             </div>
           </div>
 
@@ -305,9 +310,16 @@
             <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
               <span>🎒 行前重要行李點檢</span>
             </h3>
-            <span id="pack-progress" class="text-xs font-black bg-rose-100 text-rose-700 px-2.5 py-0.5 rounded-full border border-rose-200">0 / 8</span>
+            <span id="pack-progress" class="text-xs font-black bg-rose-100 text-rose-700 px-2.5 py-0.5 rounded-full border border-rose-200">0 / 9</span>
           </div>
           <div class="space-y-1.5 text-sm" id="pack-list">
+            <!-- 特別置頂提醒：泳峰多帶現金 -->
+            <label class="flex items-center gap-3 p-2.5 rounded-2xl bg-rose-50 border-2 border-rose-200 hover:bg-rose-100/70 cursor-pointer transition-colors shadow-sm">
+              <input type="checkbox" onchange="updatePackProgress()" class="pack-item w-4 h-4 text-rose-600 rounded border-rose-300 focus:ring-rose-500">
+              <span class="text-rose-700 font-black flex items-center gap-1.5">
+                💴 記得要多準備現金，尤其是泳峰！
+              </span>
+            </label>
             <label class="flex items-center gap-3 p-2 rounded-2xl hover:bg-orange-50 cursor-pointer transition-colors">
               <input type="checkbox" onchange="updatePackProgress()" class="pack-item w-4 h-4 text-rose-500 rounded border-orange-300 focus:ring-rose-400">
               <span class="text-slate-700 font-bold">護照本體（效期 6 個月以上）</span>
@@ -710,7 +722,6 @@
       if (!isNaN(parsed) && parsed > 0) {
         customExchangeRate = parsed;
         localStorage.setItem('trip_exchange_rate', parsed);
-        // 如果目前算盤有值，即時重算
         convertCurrency('jpy');
       }
     }
@@ -777,7 +788,6 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
-      // 載入儲存的匯率
       document.getElementById('custom-rate-input').value = customExchangeRate;
       renderDay(1);
       animateLeaves();
