@@ -250,17 +250,40 @@
     <!-- 備忘包頁籤 -->
     <section id="section-tools" class="hidden space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- 日幣計算機 -->
+        <!-- 日幣自訂匯率計算機 -->
         <div class="bg-white rounded-3xl border-2 border-orange-200 p-5 shadow-sm space-y-4">
-          <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
-            <span>🍡 日幣快速算盤（購物不慌張）</span>
-          </h3>
+          <div class="flex items-center justify-between border-b border-orange-100 pb-2">
+            <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
+              <span>🍡 日幣即時算盤</span>
+            </h3>
+            <span class="text-[10px] bg-rose-100 text-rose-700 font-bold px-2 py-0.5 rounded-full">自由設定匯率</span>
+          </div>
+
+          <!-- 匯率自訂設定列 -->
+          <div class="bg-orange-50/70 p-3 rounded-2xl border border-orange-200 space-y-2">
+            <div class="flex items-center justify-between text-xs">
+              <span class="font-bold text-slate-700">當前匯率設定 (1 JPY = ? TWD)</span>
+              <div class="flex items-center gap-1">
+                <input type="number" id="custom-rate-input" step="0.0001" value="0.215" oninput="changeCustomRate(this.value)" class="w-20 px-2 py-1 rounded-xl border-2 border-orange-300 font-black text-rose-600 text-center bg-white focus:outline-rose-400">
+                <span class="font-bold text-slate-500">台幣</span>
+              </div>
+            </div>
+            <!-- 常用匯率快捷切換 -->
+            <div class="flex items-center gap-1.5 pt-1 text-[11px]">
+              <span class="text-slate-400 font-bold">快捷切換：</span>
+              <button onclick="setQuickRate(0.210)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.210</button>
+              <button onclick="setQuickRate(0.215)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.215</button>
+              <button onclick="setQuickRate(0.220)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.220</button>
+              <button onclick="setQuickRate(0.225)" class="px-2 py-0.5 bg-white border border-orange-200 rounded-lg text-slate-600 hover:text-rose-600 font-bold cute-btn">0.225</button>
+            </div>
+          </div>
+
           <div class="space-y-3">
             <div>
               <label class="block text-xs font-bold text-slate-500 mb-1">日圓 (JPY ¥)</label>
               <div class="relative">
                 <span class="absolute left-3 top-2.5 text-amber-600 font-black">¥</span>
-                <input type="number" id="calc-jpy" oninput="convertCurrency('jpy')" placeholder="例: 1000" class="w-full pl-8 pr-3 py-2 border-2 border-orange-200 rounded-2xl focus:outline-rose-400 font-black text-slate-800 bg-orange-50/30">
+                <input type="number" id="calc-jpy" oninput="convertCurrency('jpy')" placeholder="輸入日幣金額 (例如: 1000)" class="w-full pl-8 pr-3 py-2.5 border-2 border-orange-200 rounded-2xl focus:outline-rose-400 font-black text-slate-800 bg-orange-50/20 text-base">
               </div>
             </div>
             <div class="text-center text-amber-400 text-lg">
@@ -270,11 +293,8 @@
               <label class="block text-xs font-bold text-slate-500 mb-1">新台幣 (TWD NT$)</label>
               <div class="relative">
                 <span class="absolute left-3 top-2.5 text-rose-500 font-black">NT$</span>
-                <input type="number" id="calc-twd" oninput="convertCurrency('twd')" placeholder="例: 215" class="w-full pl-12 pr-3 py-2 border-2 border-orange-200 rounded-2xl focus:outline-rose-400 font-black text-slate-800 bg-orange-50/30">
+                <input type="number" id="calc-twd" oninput="convertCurrency('twd')" placeholder="換算台幣結果" class="w-full pl-12 pr-3 py-2.5 border-2 border-orange-200 rounded-2xl focus:outline-rose-400 font-black text-slate-800 bg-orange-50/20 text-base">
               </div>
-            </div>
-            <div class="text-[11px] text-amber-900 bg-amber-50 p-2.5 rounded-2xl text-center font-bold border border-amber-200">
-              當前換算基準：1 JPY = <span id="calc-rate-badge" class="text-rose-600 font-black">0.215</span> TWD
             </div>
           </div>
         </div>
@@ -387,6 +407,9 @@
   </div>
 
   <script>
+    // 匯率變數（預設 0.215，可由使用者自訂並儲存在 LocalStorage）
+    let customExchangeRate = parseFloat(localStorage.getItem('trip_exchange_rate')) || 0.215;
+
     // 楓葉飄落特效
     let leavesActive = true;
     let leavesAnimationId = null;
@@ -509,7 +532,7 @@
       }
     }
 
-    // 7天行程資料（已更新京都/環球影城對調、難波八阪神社、奈良順遊路線）
+    // 行程資料
     const ITINERARY_DAYS = [
       {
         day: 1, date: "12/10 (三)", title: "抵達關西機場 (19:00) → 直奔阿倍野 Check-in ＆ 消夜", badge: "入境 ＆ 基地安頓 🍢",
@@ -681,16 +704,32 @@
       `;
     }
 
+    // 匯率自訂與切換功能
+    function changeCustomRate(val) {
+      const parsed = parseFloat(val);
+      if (!isNaN(parsed) && parsed > 0) {
+        customExchangeRate = parsed;
+        localStorage.setItem('trip_exchange_rate', parsed);
+        // 如果目前算盤有值，即時重算
+        convertCurrency('jpy');
+      }
+    }
+
+    function setQuickRate(val) {
+      document.getElementById('custom-rate-input').value = val;
+      changeCustomRate(val);
+      showToast(`已套用匯率：1 JPY = ${val} TWD ✨`);
+    }
+
     function convertCurrency(direction) {
-      const exchangeRate = 0.215;
       const jpyInput = document.getElementById('calc-jpy');
       const twdInput = document.getElementById('calc-twd');
       if (direction === 'jpy') {
         const jpy = parseFloat(jpyInput.value);
-        twdInput.value = !isNaN(jpy) ? Math.round(jpy * exchangeRate) : '';
+        twdInput.value = !isNaN(jpy) ? Math.round(jpy * customExchangeRate) : '';
       } else {
         const twd = parseFloat(twdInput.value);
-        jpyInput.value = !isNaN(twd) ? Math.round(twd / exchangeRate) : '';
+        jpyInput.value = !isNaN(twd) ? Math.round(twd / customExchangeRate) : '';
       }
     }
 
@@ -738,6 +777,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      // 載入儲存的匯率
+      document.getElementById('custom-rate-input').value = customExchangeRate;
       renderDay(1);
       animateLeaves();
     });
