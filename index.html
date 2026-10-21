@@ -3,13 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>大阪京都行7天6夜 自由行手冊 ＆ 團體分帳</title>
+  <title>大阪京都行7天6夜 自由行手冊</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Phosphor Icons CDN -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <!-- Chart.js for Expense Analytics -->
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
     tailwind.config = {
       theme: {
@@ -68,7 +66,6 @@
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
     }
-    /* 萌系澎澎軟糖按鈕與卡片 */
     .cute-card {
       background: #ffffff;
       border: 2px solid #ffedd5;
@@ -83,7 +80,6 @@
     .cute-btn:active {
       transform: translateY(1px) scale(0.98);
     }
-    /* 飄葉 Canvas 穿透不擋點擊 */
     #autumn-canvas {
       position: fixed;
       top: 0;
@@ -120,26 +116,22 @@
           </div>
           <p class="text-[11px] text-amber-700/80 font-medium flex items-center gap-1 mt-0.5">
             <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-            12/10 - 12/16 ・ 住宿阿倍野/太子
+            12/10 - 12/16 ・ 住宿西成太子/天王寺圈
           </p>
         </div>
       </div>
 
-      <!-- Right Navigation & Share Button -->
+      <!-- 右側頁籤導覽 -->
       <div class="flex items-center gap-2">
         <nav class="flex space-x-1 bg-amber-100/70 p-1 rounded-2xl text-xs sm:text-sm font-bold border border-amber-200/60">
-          <button id="nav-itinerary-btn" onclick="switchMainTab('itinerary')" class="px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm cute-btn">
+          <button id="nav-itinerary-btn" onclick="switchMainTab('itinerary')" class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm cute-btn">
             <span>📅 每日行程</span>
           </button>
-          <button id="nav-finance-btn" onclick="switchMainTab('finance')" class="px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 text-slate-600 hover:text-slate-900 cute-btn">
-            <span>💰 分帳小豬</span>
-          </button>
-          <button id="nav-tools-btn" onclick="switchMainTab('tools')" class="px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 text-slate-600 hover:text-slate-900 cute-btn">
+          <button id="nav-tools-btn" onclick="switchMainTab('tools')" class="px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1 text-slate-600 hover:text-slate-900 cute-btn">
             <span>🧳 備忘包</span>
           </button>
         </nav>
 
-        <!-- Share Button -->
         <button onclick="openShareModal()" title="分享給朋友" class="hidden sm:flex items-center gap-1.5 px-3 py-2 rounded-xl bg-gradient-to-r from-rose-500 to-amber-500 text-white text-xs font-bold shadow-md shadow-rose-400/30 cute-btn">
           <i class="ph-bold ph-share-network text-sm"></i>
           <span>分享</span>
@@ -148,7 +140,7 @@
     </div>
   </header>
 
-  <!-- Floating Toggle for Leaves & Mobile Share Floating button -->
+  <!-- 浮動按鈕 -->
   <div class="fixed bottom-6 right-5 z-40 flex flex-col gap-2">
     <button onclick="toggleLeavesAnimation()" id="toggle-leaves-btn" class="w-10 h-10 rounded-full bg-white/90 border-2 border-orange-200 shadow-md text-slate-700 flex items-center justify-center text-lg hover:scale-110 active:scale-95 transition-all" title="開關落葉特效">
       🍁
@@ -158,19 +150,17 @@
     </button>
   </div>
 
-  <!-- Main Container -->
   <main class="flex-1 max-w-5xl w-full mx-auto p-4 sm:p-6 pb-28">
 
+    <!-- 行程頁籤 -->
     <section id="section-itinerary" class="space-y-6">
-      <!-- Flight & Hotel Summary Banner -->
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3.5">
-        <!-- Flight Info Card -->
         <div class="bg-gradient-to-br from-amber-500 via-rose-500 to-pink-500 rounded-3xl p-5 text-white shadow-lg shadow-rose-400/20 border-2 border-white/30 relative overflow-hidden">
           <div class="absolute -right-3 -bottom-4 text-7xl opacity-15 pointer-events-none">✈️</div>
           <div class="flex items-center justify-between border-b border-white/20 pb-2.5 mb-3">
             <div class="flex items-center gap-2">
               <span class="p-1.5 bg-white/25 rounded-xl text-base">🎫</span>
-              <span class="text-xs font-black tracking-wider text-rose-50 uppercase">航班時程與航廈資訊</span>
+              <span class="text-xs font-black tracking-wider text-rose-50 uppercase">航班時程資訊</span>
             </div>
             <span class="text-[11px] font-black bg-white/25 px-2.5 py-0.5 rounded-full">KIX 關西空港</span>
           </div>
@@ -180,7 +170,7 @@
                 🛬 去程抵達
               </div>
               <div class="font-black text-base sm:text-lg mt-1 text-white">12/10 19:00</div>
-              <div class="text-[10px] text-rose-100 mt-0.5">直奔 Haruka 到天王寺</div>
+              <div class="text-[10px] text-rose-100 mt-0.5">Haruka 直達天王寺</div>
             </div>
             <div class="bg-white/20 backdrop-blur-md rounded-2xl p-3 border border-white/20">
               <div class="text-[11px] text-amber-100 flex items-center gap-1 font-bold">
@@ -192,7 +182,6 @@
           </div>
         </div>
 
-        <!-- Accommodation Card with Google Map Direct Link -->
         <div class="bg-white border-2 border-orange-200/90 rounded-3xl p-5 shadow-sm flex flex-col justify-between relative overflow-hidden">
           <div class="absolute top-2 right-2 text-4xl opacity-10 pointer-events-none">🏡</div>
           <div>
@@ -222,7 +211,7 @@
         </div>
       </div>
 
-      <!-- Days Carousel Tabs -->
+      <!-- 天數按鈕 -->
       <div class="flex space-x-2.5 overflow-x-auto pb-2 custom-scrollbar -mx-4 px-4 sm:mx-0 sm:px-0">
         <button onclick="renderDay(1)" id="day-tab-1" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-gradient-to-r from-amber-500 to-rose-500 text-white shadow-md shadow-rose-400/20 transition-all flex flex-col items-center cute-btn border-2 border-transparent">
           <span class="text-[10px] opacity-90 uppercase tracking-wider">Day 1 (12/10)</span>
@@ -230,7 +219,7 @@
         </button>
         <button onclick="renderDay(2)" id="day-tab-2" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-white text-slate-700 hover:bg-orange-50 border-2 border-orange-200 transition-all flex flex-col items-center cute-btn">
           <span class="text-[10px] text-slate-400 uppercase tracking-wider">Day 2 (12/11)</span>
-          <span>環球影城 USJ 🍄</span>
+          <span>京都三大名勝 ⛩️</span>
         </button>
         <button onclick="renderDay(3)" id="day-tab-3" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-white text-slate-700 hover:bg-orange-50 border-2 border-orange-200 transition-all flex flex-col items-center cute-btn">
           <span class="text-[10px] text-slate-400 uppercase tracking-wider">Day 3 (12/12)</span>
@@ -242,11 +231,11 @@
         </button>
         <button onclick="renderDay(5)" id="day-tab-5" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-white text-slate-700 hover:bg-orange-50 border-2 border-orange-200 transition-all flex flex-col items-center cute-btn">
           <span class="text-[10px] text-slate-400 uppercase tracking-wider">Day 5 (12/14)</span>
-          <span>京都三大名勝 ⛩️</span>
+          <span>環球影城 USJ 🍄</span>
         </button>
         <button onclick="renderDay(6)" id="day-tab-6" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-white text-slate-700 hover:bg-orange-50 border-2 border-orange-200 transition-all flex flex-col items-center cute-btn">
           <span class="text-[10px] text-slate-400 uppercase tracking-wider">Day 6 (12/15)</span>
-          <span>大阪城 & 心齋橋 🛍️</span>
+          <span>大阪城 & 難波八阪 🦁</span>
         </button>
         <button onclick="renderDay(7)" id="day-tab-7" class="day-tab-btn flex-shrink-0 px-4 py-2.5 rounded-2xl text-sm font-extrabold bg-white text-slate-700 hover:bg-orange-50 border-2 border-orange-200 transition-all flex flex-col items-center cute-btn">
           <span class="text-[10px] text-slate-400 uppercase tracking-wider">Day 7 (12/16)</span>
@@ -254,131 +243,14 @@
         </button>
       </div>
 
-      <!-- Day Details Content Area -->
       <div id="day-content" class="bg-white rounded-3xl border-2 border-orange-200/90 p-5 sm:p-7 shadow-sm transition-all duration-300">
-        <!-- Rendered by JS -->
       </div>
     </section>
 
-    <section id="section-finance" class="hidden space-y-6">
-      <!-- Finance Header & Quick Stats -->
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white p-5 rounded-3xl border-2 border-orange-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-black">
-            ¥
-          </div>
-          <div>
-            <div class="text-xs text-slate-400 font-bold">總支出 (JPY)</div>
-            <div id="total-jpy-display" class="text-xl font-black text-slate-900">¥0</div>
-            <div id="total-twd-display" class="text-xs text-rose-500 font-bold">≈ NT$0</div>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-3xl border-2 border-orange-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center text-2xl">
-            <span class="text-xl">👥</span>
-          </div>
-          <div class="flex-1">
-            <div class="flex items-center justify-between">
-              <span class="text-xs text-slate-400 font-bold">團員人數</span>
-              <button onclick="manageMembersModal()" class="text-xs text-rose-600 font-extrabold hover:underline">編輯成員</button>
-            </div>
-            <div id="member-count-display" class="text-xl font-black text-slate-900">7 人</div>
-            <div id="member-names-display" class="text-xs text-slate-500 font-medium truncate">志, 大頭, 丹, 老闆, 阿瑋, 信義房屋, 胖子</div>
-          </div>
-        </div>
-
-        <div class="bg-white p-5 rounded-3xl border-2 border-orange-200 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl">
-            <span class="text-xl">💱</span>
-          </div>
-          <div>
-            <div class="text-xs text-slate-400 font-bold">匯率設定 (JPY → TWD)</div>
-            <div class="flex items-center gap-2 mt-1">
-              <span class="text-sm font-black text-slate-800">1 JPY =</span>
-              <input type="number" id="exchange-rate-input" step="0.001" value="0.215" onchange="updateExchangeRate(this.value)" class="w-20 px-2.5 py-1 border-2 border-orange-200 rounded-xl text-sm font-black focus:outline-rose-400 text-center bg-orange-50/50">
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Action Buttons -->
-      <div class="flex flex-wrap gap-3 items-center justify-between">
-        <div class="flex gap-2.5">
-          <button onclick="openAddExpenseModal()" class="bg-gradient-to-r from-rose-500 to-amber-500 hover:from-rose-600 hover:to-amber-600 text-white font-black px-4 py-2.5 rounded-2xl text-sm shadow-md shadow-rose-400/25 flex items-center gap-2 cute-btn">
-            <span>✨ 新增一筆花費</span>
-          </button>
-          <button onclick="toggleSettlementView()" id="toggle-settle-btn" class="bg-white border-2 border-orange-200 hover:bg-orange-50 text-slate-700 font-black px-4 py-2.5 rounded-2xl text-sm shadow-sm flex items-center gap-2 cute-btn">
-            <span>🧮 誰該給誰錢？（智慧清帳）</span>
-          </button>
-        </div>
-        <div class="flex gap-2 text-xs">
-          <button onclick="exportExpensesJSON()" class="px-3 py-1.5 rounded-xl border-2 border-orange-200 bg-white text-slate-600 font-bold hover:bg-orange-50 flex items-center gap-1">
-            <i class="ph-bold ph-export"></i> 備份資料
-          </button>
-          <button onclick="resetExpensesPrompt()" class="px-3 py-1.5 rounded-xl border-2 border-rose-200 bg-rose-50 text-rose-600 font-bold hover:bg-rose-100 flex items-center gap-1">
-            <i class="ph-bold ph-trash"></i> 清空
-          </button>
-        </div>
-      </div>
-
-      <!-- Settlement Card (Accordion / Toggleable) -->
-      <div id="settlement-container" class="bg-gradient-to-br from-amber-900 via-stone-900 to-slate-900 text-white rounded-3xl p-6 shadow-xl hidden border-2 border-amber-600/30">
-        <div class="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-          <h3 class="font-extrabold text-base flex items-center gap-2 text-amber-200">
-            <span class="text-xl">🤝</span>
-            誰該轉帳給誰？（最少轉帳次數演算法）
-          </h3>
-          <span class="text-xs text-amber-300/80 bg-white/10 px-2.5 py-0.5 rounded-full">已最佳化</span>
-        </div>
-        <div id="settlement-results" class="space-y-2.5 text-sm">
-          <!-- Rendered by JS -->
-        </div>
-      </div>
-
-      <!-- Expense List & Analytics Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Expense Records (2 Cols) -->
-        <div class="lg:col-span-2 bg-white rounded-3xl border-2 border-orange-200 p-5 shadow-sm">
-          <div class="flex items-center justify-between mb-4 pb-2.5 border-b border-orange-100">
-            <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
-              <span>🧾 開銷詳細清單</span>
-            </h3>
-            <span id="expense-count-tag" class="text-xs px-3 py-0.5 rounded-full bg-rose-50 border border-rose-200 font-bold text-rose-700">0 筆記錄</span>
-          </div>
-          
-          <div id="expense-list-empty" class="text-center py-12 text-slate-400">
-            <span class="text-5xl block mb-2">🍰</span>
-            <p class="text-sm font-bold text-slate-600">目前還沒有開銷紀錄喔～</p>
-            <p class="text-xs text-slate-400 mt-1">點擊上方「新增一筆花費」隨手記帳！</p>
-          </div>
-
-          <div id="expense-list" class="space-y-3 custom-scrollbar max-h-[500px] overflow-y-auto pr-1">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-
-        <!-- Expense Category Breakdown (1 Col) -->
-        <div class="bg-white rounded-3xl border-2 border-orange-200 p-5 shadow-sm flex flex-col">
-          <h3 class="font-black text-slate-900 flex items-center gap-2 text-base mb-4 pb-2.5 border-b border-orange-100">
-            <span>🍩 開銷分類圖</span>
-          </h3>
-          <div class="relative flex-1 flex items-center justify-center min-h-[220px]">
-            <canvas id="expenseChart"></canvas>
-            <div id="chart-empty-msg" class="absolute text-xs text-slate-400 text-center font-bold">
-              暫無消費數據
-            </div>
-          </div>
-          <div id="category-summary-list" class="mt-4 space-y-2 text-xs">
-            <!-- Rendered by JS -->
-          </div>
-        </div>
-      </div>
-    </section>
-
+    <!-- 備忘包頁籤 -->
     <section id="section-tools" class="hidden space-y-6">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <!-- Live Quick Converter -->
+        <!-- 日幣計算機 -->
         <div class="bg-white rounded-3xl border-2 border-orange-200 p-5 shadow-sm space-y-4">
           <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
             <span>🍡 日幣快速算盤（購物不慌張）</span>
@@ -407,7 +279,7 @@
           </div>
         </div>
 
-        <!-- Packing Checklist -->
+        <!-- 行李檢查清單 -->
         <div class="bg-white rounded-3xl border-2 border-orange-200 p-5 shadow-sm space-y-3">
           <div class="flex items-center justify-between">
             <h3 class="font-black text-slate-900 flex items-center gap-2 text-base">
@@ -430,7 +302,7 @@
             </label>
             <label class="flex items-center gap-3 p-2 rounded-xl hover:bg-orange-50 cursor-pointer transition-colors">
               <input type="checkbox" onchange="updatePackProgress()" class="pack-item w-4 h-4 text-rose-500 rounded border-orange-300 focus:ring-rose-400">
-              <span class="text-slate-700 font-bold">USJ 環球影城門票 ＆ 官方 App</span>
+              <span class="text-slate-700 font-bold">USJ 環球影城門票 ＆ 官方 App (12/14)</span>
             </label>
             <label class="flex items-center gap-3 p-2 rounded-xl hover:bg-orange-50 cursor-pointer transition-colors">
               <input type="checkbox" onchange="updatePackProgress()" class="pack-item w-4 h-4 text-rose-500 rounded border-orange-300 focus:ring-rose-400">
@@ -452,7 +324,7 @@
         </div>
       </div>
 
-      <!-- Emergency Contacts & Tips -->
+      <!-- 緊急求助電話 -->
       <div class="bg-gradient-to-r from-amber-50 to-rose-50 border-2 border-orange-200 rounded-3xl p-5 text-amber-950 space-y-3">
         <h4 class="font-black flex items-center gap-2 text-sm text-amber-900">
           <span>🆘 緊急求助電話 ＆ 基地周邊資訊</span>
@@ -477,12 +349,12 @@
     </section>
   </main>
 
-  <!-- Share Guide Modal -->
+  <!-- 彈跳視窗：分享 -->
   <div id="share-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
     <div class="bg-white rounded-3xl max-w-md w-full p-6 shadow-2xl space-y-4 border-2 border-orange-200">
       <div class="flex items-center justify-between border-b border-orange-100 pb-3">
         <h3 class="font-black text-lg text-slate-900 flex items-center gap-2">
-          <span>📤 如何分享給旅伴？</span>
+          <span>📤 分享給旅伴</span>
         </h3>
         <button onclick="closeShareModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-xl">
           <i class="ph-bold ph-x text-lg"></i>
@@ -490,137 +362,32 @@
       </div>
 
       <div class="space-y-3 text-xs sm:text-sm text-slate-600 leading-relaxed font-medium">
-        <p class="font-bold text-slate-800">你可以透過以下三種超簡單方式把網頁傳給 7 位團員：</p>
-        
         <div class="bg-orange-50 border border-orange-200 rounded-2xl p-3.5 space-y-1.5">
           <div class="font-black text-rose-600 flex items-center gap-1.5">
-            <span>✨ 方式一：直接複製當前連結（推薦）</span>
+            <span>✨ 複製網址分享</span>
           </div>
-          <p class="text-xs text-slate-500">如果目前已在線上瀏覽，直接點擊下方按鈕複製網址貼至 LINE 群組！</p>
+          <p class="text-xs text-slate-500">點擊下方按鈕複製網址貼到 LINE 群組，朋友點開就能直接看完整 7 天行程與導航！</p>
           <button onclick="copyCurrentUrl()" class="w-full mt-2 py-2 bg-gradient-to-r from-rose-500 to-amber-500 text-white rounded-xl font-black text-xs shadow cute-btn">
             📋 複製網頁連結
           </button>
-        </div>
-
-        <div class="bg-amber-50/70 border border-amber-200 rounded-2xl p-3 space-y-1 text-xs">
-          <span class="font-black text-amber-800">☁️ 方式二：發布成專屬永久網址（完全免費）</span>
-          <p class="text-slate-600">將這份 <code class="bg-amber-100 px-1 py-0.5 rounded text-amber-900 font-mono font-bold">index.html</code> 上傳至 <b>GitHub Pages</b>、<b>Vercel</b> 或 <b>Netlify</b>，10 秒內就能產生永久專屬網址，大家的手機都可以當 App 儲存到主畫面！</p>
-        </div>
-
-        <div class="bg-slate-50 border border-slate-200 rounded-2xl p-3 space-y-1 text-xs">
-          <span class="font-black text-slate-800">📁 方式三：直接把 HTML 檔傳至 LINE / Google Drive</span>
-          <p class="text-slate-600">本網頁是完整的單一獨立檔案（Single File），朋友直接下載後用任何手機瀏覽器（Safari、Chrome）點開即可完整瀏覽與記帳！</p>
         </div>
       </div>
 
       <div class="pt-2 flex justify-end">
         <button onclick="closeShareModal()" class="px-5 py-2 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-xl text-xs font-bold">
-          我知道了！
+          關閉
         </button>
       </div>
     </div>
   </div>
 
-  <!-- Expense Modal -->
-  <div id="expense-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl space-y-5 border-2 border-orange-200">
-      <div class="flex items-center justify-between border-b border-orange-100 pb-3">
-        <h3 class="font-black text-lg text-slate-900 flex items-center gap-2">
-          <span>✨ 記下一筆新開銷</span>
-        </h3>
-        <button onclick="closeAddExpenseModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-xl">
-          <i class="ph-bold ph-x text-lg"></i>
-        </button>
-      </div>
-
-      <form id="expense-form" onsubmit="handleSaveExpense(event)" class="space-y-4">
-        <div class="grid grid-cols-2 gap-3">
-          <div class="col-span-2 sm:col-span-1">
-            <label class="block text-xs font-black text-slate-700 mb-1">項目名稱 *</label>
-            <input type="text" id="expense-title" required placeholder="例: 一蘭拉麵、HARUKAS門票" class="w-full px-3 py-2 border-2 border-orange-200 rounded-2xl text-sm focus:outline-rose-400 bg-orange-50/20 font-bold">
-          </div>
-          <div class="col-span-2 sm:col-span-1">
-            <label class="block text-xs font-black text-slate-700 mb-1">消費類別</label>
-            <select id="expense-category" class="w-full px-3 py-2 border-2 border-orange-200 rounded-2xl text-sm focus:outline-rose-400 bg-white font-bold">
-              <option value="餐飲美食">🍜 餐飲美食</option>
-              <option value="交通車資">🚇 交通車資</option>
-              <option value="門票體驗">🎟️ 門票體驗</option>
-              <option value="購物伴手禮">🛍️ 購物伴手禮</option>
-              <option value="住宿雜項">🏨 住宿雜項</option>
-            </select>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-3 gap-3">
-          <div>
-            <label class="block text-xs font-black text-slate-700 mb-1">幣別</label>
-            <select id="expense-currency" class="w-full px-3 py-2 border-2 border-orange-200 rounded-2xl text-sm focus:outline-rose-400 bg-white font-black text-rose-600">
-              <option value="JPY">日圓 ¥ (JPY)</option>
-              <option value="TWD">台幣 NT$ (TWD)</option>
-            </select>
-          </div>
-          <div class="col-span-2">
-            <label class="block text-xs font-black text-slate-700 mb-1">消費金額 *</label>
-            <input type="number" id="expense-amount" step="any" required placeholder="0" class="w-full px-3 py-2 border-2 border-orange-200 rounded-2xl text-sm focus:outline-rose-400 font-black text-slate-900 bg-orange-50/20">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-black text-slate-700 mb-1">誰先代墊付款？ *</label>
-          <select id="expense-payer" required class="w-full px-3 py-2 border-2 border-orange-200 rounded-2xl text-sm focus:outline-rose-400 bg-white font-bold">
-          </select>
-        </div>
-
-        <div>
-          <div class="flex items-center justify-between mb-1.5">
-            <label class="block text-xs font-black text-slate-700">由誰分攤？（預設全員平分）</label>
-            <button type="button" onclick="toggleAllSplitCheckboxes()" class="text-xs text-rose-600 font-extrabold hover:underline">全選 / 全消</button>
-          </div>
-          <div id="expense-split-members" class="grid grid-cols-2 gap-2 p-3 bg-orange-50/60 rounded-2xl border-2 border-orange-100 max-h-32 overflow-y-auto custom-scrollbar">
-          </div>
-        </div>
-
-        <div class="flex justify-end gap-2.5 pt-2 border-t border-orange-100">
-          <button type="button" onclick="closeAddExpenseModal()" class="px-4 py-2 rounded-xl text-sm font-bold text-slate-600 hover:bg-slate-100">取消</button>
-          <button type="submit" class="px-5 py-2 rounded-2xl text-sm font-black bg-gradient-to-r from-rose-500 to-amber-500 text-white shadow-md shadow-rose-400/25 cute-btn">儲存花費</button>
-        </div>
-      </form>
-    </div>
-  </div>
-
-  <div id="member-modal" class="fixed inset-0 z-50 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-sm w-full p-6 shadow-2xl space-y-4 border-2 border-orange-200">
-      <div class="flex items-center justify-between border-b border-orange-100 pb-2">
-        <h3 class="font-black text-base text-slate-900 flex items-center gap-2">
-          <span>👥 旅行成員名單</span>
-        </h3>
-        <button onclick="closeMemberModal()" class="text-slate-400 hover:text-slate-600 p-1">
-          <i class="ph-bold ph-x text-lg"></i>
-        </button>
-      </div>
-      <p class="text-xs text-slate-500 font-bold">成員名單將連動分帳選項：</p>
-      
-      <div id="current-members-tags" class="flex flex-wrap gap-2">
-      </div>
-
-      <div class="flex gap-2">
-        <input type="text" id="new-member-name" placeholder="新成員姓名" class="flex-1 px-3 py-1.5 border-2 border-orange-200 rounded-xl text-xs focus:outline-rose-400 font-bold">
-        <button onclick="addNewMember()" class="px-3 py-1.5 bg-rose-500 text-white rounded-xl text-xs font-black hover:bg-rose-600 cute-btn">新增</button>
-      </div>
-
-      <div class="pt-2 flex justify-end">
-        <button onclick="closeMemberModal()" class="px-4 py-1.5 bg-slate-100 hover:bg-slate-200 rounded-xl text-xs font-bold text-slate-700">完成</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Toast Notification -->
   <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-slate-900 text-white px-5 py-3 rounded-full shadow-2xl flex items-center gap-2 text-xs font-bold transform transition-all translate-y-20 opacity-0 pointer-events-none">
     <span class="text-emerald-400">✨</span>
     <span id="toast-msg">已完成</span>
   </div>
 
   <script>
+    // 楓葉飄落特效
     let leavesActive = true;
     let leavesAnimationId = null;
     const canvas = document.getElementById('autumn-canvas');
@@ -633,27 +400,24 @@
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
-    // 經典標準五葉楓葉暖秋色調
     const classicMapleColors = [
-      { fill: '#e11d48', stroke: '#9f1239' }, // 緋紅
-      { fill: '#ea580c', stroke: '#9a3412' }, // 暖楓橘
-      { fill: '#f97316', stroke: '#c2410c' }, // 亮橙金
-      { fill: '#be123c', stroke: '#881337' }, // 深酒紅
-      { fill: '#f59e0b', stroke: '#b45309' }  // 杏金
+      { fill: '#e11d48', stroke: '#9f1239' },
+      { fill: '#ea580c', stroke: '#9a3412' },
+      { fill: '#f97316', stroke: '#c2410c' },
+      { fill: '#be123c', stroke: '#881337' },
+      { fill: '#f59e0b', stroke: '#b45309' }
     ];
     const leaves = [];
     const LEAF_COUNT = 28;
 
     class Leaf {
-      constructor() {
-        this.reset(true);
-      }
+      constructor() { this.reset(true); }
       reset(initial = false) {
         this.x = Math.random() * (canvas.width + 80) - 40;
         this.y = initial ? Math.random() * canvas.height : -35;
-        this.size = Math.random() * 7 + 14; // 葉片大小
-        this.speedX = Math.random() * 0.7 + 0.3; // 緩緩隨風偏右
-        this.speedY = Math.random() * 0.9 + 0.7; // 自然輕盈下落速度
+        this.size = Math.random() * 7 + 14;
+        this.speedX = Math.random() * 0.7 + 0.3;
+        this.speedY = Math.random() * 0.9 + 0.7;
         this.rotation = Math.random() * Math.PI * 2;
         this.rotationSpeed = (Math.random() - 0.5) * 0.02;
         this.swing = Math.random() * Math.PI * 2;
@@ -667,11 +431,8 @@
         this.swing += this.swingSpeed;
         this.flip += this.flipSpeed;
         this.rotation += this.rotationSpeed;
-
-        // 左右徐徐擺動
         this.x += this.speedX + Math.sin(this.swing) * 1.4;
         this.y += this.speedY + Math.abs(Math.sin(this.flip)) * 0.3;
-
         if (this.y > canvas.height + 40 || this.x > canvas.width + 50 || this.x < -50) {
           this.reset(false);
         }
@@ -680,93 +441,56 @@
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
-
-        // 翻轉效果（產生立體感）
         const scaleX = Math.cos(this.flip);
         ctx.scale(scaleX, 1);
         ctx.globalAlpha = this.opacity;
-
         const s = this.size;
 
-        // 繪製標準乾淨的五裂掌狀楓葉
         ctx.beginPath();
-        // 葉柄基部
         ctx.moveTo(0, s * 0.35);
-
-        // 1. 左下小裂片
         ctx.bezierCurveTo(-s * 0.45, s * 0.25, -s * 0.75, s * 0.1, -s * 0.85, 0);
         ctx.bezierCurveTo(-s * 0.65, -s * 0.15, -s * 0.45, -s * 0.1, -s * 0.35, -s * 0.2);
-
-        // 2. 左上中裂片
         ctx.bezierCurveTo(-s * 0.65, -s * 0.4, -s * 0.85, -s * 0.7, -s * 0.75, -s * 0.85);
         ctx.bezierCurveTo(-s * 0.5, -s * 0.75, -s * 0.3, -s * 0.55, -s * 0.2, -s * 0.45);
-
-        // 3. 中央主頂裂片
         ctx.bezierCurveTo(-s * 0.2, -s * 0.8, -s * 0.1, -s * 1.3, 0, -s * 1.4);
         ctx.bezierCurveTo(s * 0.1, -s * 1.3, s * 0.2, -s * 0.8, s * 0.2, -s * 0.45);
-
-        // 4. 右上中裂片
         ctx.bezierCurveTo(s * 0.3, -s * 0.55, s * 0.5, -s * 0.75, s * 0.75, -s * 0.85);
         ctx.bezierCurveTo(s * 0.85, -s * 0.7, s * 0.65, -s * 0.4, s * 0.35, -s * 0.2);
-
-        // 5. 右下小裂片
         ctx.bezierCurveTo(s * 0.45, -s * 0.1, s * 0.65, -s * 0.15, s * 0.85, 0);
         ctx.bezierCurveTo(s * 0.75, s * 0.1, s * 0.45, s * 0.25, 0, s * 0.35);
-
         ctx.closePath();
 
-        // 填充色彩與邊線
         ctx.fillStyle = this.color.fill;
         ctx.fill();
         ctx.strokeStyle = this.color.stroke;
         ctx.lineWidth = 1;
         ctx.stroke();
 
-        // 五條主葉脈（簡潔俐落）
         ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
         ctx.lineWidth = 0.8;
-
-        // 主葉脈
         ctx.beginPath();
-        ctx.moveTo(0, s * 0.3);
-        ctx.lineTo(0, -s * 1.15);
-        // 左上脈
-        ctx.moveTo(0, s * 0.25);
-        ctx.lineTo(-s * 0.65, -s * 0.7);
-        // 右上脈
-        ctx.moveTo(0, s * 0.25);
-        ctx.lineTo(s * 0.65, -s * 0.7);
-        // 左下脈
-        ctx.moveTo(0, s * 0.28);
-        ctx.lineTo(-s * 0.65, -s * 0.05);
-        // 右下脈
-        ctx.moveTo(0, s * 0.28);
-        ctx.lineTo(s * 0.65, -s * 0.05);
+        ctx.moveTo(0, s * 0.3); ctx.lineTo(0, -s * 1.15);
+        ctx.moveTo(0, s * 0.25); ctx.lineTo(-s * 0.65, -s * 0.7);
+        ctx.moveTo(0, s * 0.25); ctx.lineTo(s * 0.65, -s * 0.7);
+        ctx.moveTo(0, s * 0.28); ctx.lineTo(-s * 0.65, -s * 0.05);
+        ctx.moveTo(0, s * 0.28); ctx.lineTo(s * 0.65, -s * 0.05);
         ctx.stroke();
 
-        // 葉柄
         ctx.strokeStyle = this.color.stroke;
         ctx.lineWidth = 1.2;
         ctx.beginPath();
-        ctx.moveTo(0, s * 0.35);
-        ctx.lineTo(s * 0.02, s * 0.65);
+        ctx.moveTo(0, s * 0.35); ctx.lineTo(s * 0.02, s * 0.65);
         ctx.stroke();
-
         ctx.restore();
       }
     }
 
-    for (let i = 0; i < LEAF_COUNT; i++) {
-      leaves.push(new Leaf());
-    }
+    for (let i = 0; i < LEAF_COUNT; i++) leaves.push(new Leaf());
 
     function animateLeaves() {
       if (!leavesActive) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      leaves.forEach(leaf => {
-        leaf.update();
-        leaf.draw();
-      });
+      leaves.forEach(leaf => { leaf.update(); leaf.draw(); });
       leavesAnimationId = requestAnimationFrame(animateLeaves);
     }
 
@@ -775,412 +499,114 @@
       const btn = document.getElementById('toggle-leaves-btn');
       if (leavesActive) {
         btn.textContent = '🍁';
-        btn.title = '關閉落葉特效';
         animateLeaves();
         showToast('已開啟浪漫飄葉特效 🍂');
       } else {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         cancelAnimationFrame(leavesAnimationId);
         btn.textContent = '🍃';
-        btn.title = '開啟落葉特效';
         showToast('已暫停飄葉特效');
       }
     }
 
+    // 7天行程資料（已更新京都/環球影城對調、難波八阪神社、奈良順遊路線）
     const ITINERARY_DAYS = [
       {
-        day: 1,
-        date: "12/10 (三)",
-        title: "抵達關西機場 (19:00) → 直奔阿倍野 Check-in ＆ 消夜",
-        badge: "入境 ＆ 基地安頓 🍢",
+        day: 1, date: "12/10 (三)", title: "抵達關西機場 (19:00) → 直奔阿倍野 Check-in ＆ 消夜", badge: "入境 ＆ 基地安頓 🍢",
         traffic: "關西國際機場（KIX）下機通關，搭【JR 特急 Haruka】直達【JR 天王寺站】約 35 分（一車直達免轉車）。",
         points: [
-          {
-            time: "19:00 - 20:15",
-            title: "抵達關西國際機場（KIX）＆ 入境通關",
-            desc: "飛機於 19:00 降落關西機場，完成入境審查（出示 VJW QR Code）、領取行李並通關完成。",
-            tag: "航廈",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Kansai International Airport"
-          },
-          {
-            time: "20:15 - 20:50",
-            title: "搭乘 JR 特急 Haruka 直達天王寺",
-            desc: "至 JR 機場站搭乘 Haruka，車廂設有大型行李架，約 35 分鐘直達天王寺站。",
-            tag: "特急列車",
-            tagColor: "bg-rose-100 text-rose-800 border border-rose-200",
-            mapQuery: "Tennoji Station"
-          },
-          {
-            time: "20:50 - 21:30",
-            title: "抵達住宿地 Check-in 放行李",
-            desc: "地址：1-chōme-13-7 Taishi, Nishinari Ward, Osaka（鄰近動物園前站 / 新今宮站 / 天王寺），辦理入住放行囊。",
-            tag: "住宿基地",
-            tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200",
-            mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka"
-          },
-          {
-            time: "21:30 - 深夜",
-            title: "周邊熱門消夜 ＆ 養精蓄銳",
-            desc: "散步至新世界或天王寺周邊覓食（一蘭拉麵阿倍野店、在地串炸或便利超商），早點就寢為隔日環球影城儲備體力！",
-            tag: "美食消夜",
-            tagColor: "bg-orange-100 text-orange-800 border border-orange-200",
-            mapQuery: "Shinsekai Osaka"
-          }
-        ],
-        tips: "💡 住宿西成太子鄰近動物園前站與天王寺站，生活機能完整，出關當晚直達免搬行李走太多階梯！"
+          { time: "19:00 - 20:15", title: "抵達關西國際機場（KIX）＆ 入境通關", desc: "飛機於 19:00 降落關西機場，完成入境審查（出示 VJW QR Code）、領取行李並通關完成。", tag: "航廈", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Kansai International Airport" },
+          { time: "20:15 - 20:50", title: "搭乘 JR 特急 Haruka 直達天王寺", desc: "至 JR 機場站搭乘 Haruka，車廂設有大型行李架，約 35 分鐘直達天王寺站。", tag: "特急列車", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Tennoji Station" },
+          { time: "20:50 - 21:30", title: "抵達住宿地 Check-in 放行李", desc: "地址：1-chōme-13-7 Taishi, Nishinari Ward, Osaka（鄰近動物園前站 / 新今宮站 / 天王寺），辦理入住放行囊。", tag: "住宿基地", tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200", mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka" },
+          { time: "21:30 - 深夜", title: "周邊熱門消夜 ＆ 養精蓄銳", desc: "散步至新世界或天王寺周邊覓食（一蘭拉麵阿倍野店、在地串炸或便利超商），早點就寢為隔日京都儲備體力！", tag: "美食消夜", tagColor: "bg-orange-100 text-orange-800 border border-orange-200", mapQuery: "Shinsekai Osaka" }
+        ], tips: "💡 住宿西成太子鄰近動物園前站與天王寺站，生活機能完整，出關當晚直達免搬行李走太多階梯！"
       },
       {
-        day: 2,
-        date: "12/11 (四)",
-        title: "日本環球影城（USJ）全日衝刺 🍄",
-        badge: "全日狂歡 🎉",
-        traffic: "JR 天王寺站搭【JR 大阪環狀線】至「西九條站」 → 轉乘【JR 櫻島線（夢咲線）】至「環球城站（Universal-City）」，車程約 25 分鐘。",
-        points: [
-          {
-            time: "07:00 - 08:30",
-            title: "一早出發 ＆ 排隊入園衝刺",
-            desc: "從住宿地出發直奔 USJ，比表定開園時間提前抵達門口排隊，善用官方 App 搶抽超級任天堂世界區域整理券。",
-            tag: "主題樂園",
-            tagColor: "bg-rose-100 text-rose-800 border border-rose-200",
-            mapQuery: "Universal Studios Japan"
-          },
-          {
-            time: "白天全日",
-            title: "USJ 沉浸式人氣設施狂歡",
-            desc: "超級任天堂世界（瑪利歐賽車、能量手環挑戰）、哈利波特魔法世界（禁忌之旅）、飛天翼龍、小小兵樂園狂歡！",
-            tag: "人氣設施",
-            tagColor: "bg-purple-100 text-purple-800 border border-purple-200",
-            mapQuery: "Universal Studios Japan"
-          },
-          {
-            time: "18:30 - 20:30",
-            title: "Universal CityWalk 晚餐與限定紀念品",
-            desc: "出園後於 CityWalk 享用晚餐（大阪燒、炸豬排或拉麵），採買限定伴手禮。",
-            tag: "商場美食",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Universal CityWalk Osaka"
-          },
-          {
-            time: "20:30 以後",
-            title: "搭 JR 返回住宿地休息",
-            desc: "搭乘 JR 原路經西九條轉乘返回天王寺，回飯店泡澡放鬆修復雙腿。",
-            tag: "休息",
-            tagColor: "bg-slate-100 text-slate-700 border border-slate-200",
-            mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka"
-          }
-        ],
-        tips: "💡 園區內手機消耗電量極快，必備 1-2 顆行動電源；中午可提前至 11:00 前用餐避開尖峰排隊。"
-      },
-      {
-        day: 3,
-        date: "12/12 (五)",
-        title: "北攝自然散策 ＆ 阿倍野 HARUKAS 夕陽 ＆ 通天閣宵夜",
-        badge: "絕景夕照 ＆ 紅葉 🍁",
-        traffic: "動物園前/天王寺站搭御堂筋線（直通北大阪急行）一車直達「箕面萱野站」；下午回天王寺正好趕上金色日落。",
-        points: [
-          {
-            time: "08:30 - 09:30",
-            title: "搭御堂筋線一車直達箕面萱野站",
-            desc: "從動物園前站搭乘地下鐵御堂筋線直通北大阪急行，免轉車直達終點「箕面萱野站」（約 40 分鐘）。",
-            tag: "地鐵直達",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Minoh-kayano Station"
-          },
-          {
-            time: "09:30 - 11:30",
-            title: "勝尾寺參拜祈福（滿山紅色達摩）",
-            desc: "箕面萱野站前轉搭阪急公車直達勝尾寺。參拜祈求勝運，拍攝整面壮觀的紅色達摩不倒翁牆。",
-            tag: "名剎求運",
-            tagColor: "bg-rose-100 text-rose-800 border border-rose-200",
-            mapQuery: "Katsuo-ji Temple"
-          },
-          {
-            time: "11:30 - 12:30",
-            title: "箕面大瀑布欣賞清涼飛瀑",
-            desc: "搭車至箕面大瀑布，欣賞落差 33 公尺的壯麗飛瀑與清澈溪谷。",
-            tag: "自然奇景",
-            tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200",
-            mapQuery: "Minoh Waterfall"
-          },
-          {
-            time: "12:30 - 14:00",
-            title: "箕面公園溪畔步道輕鬆下坡漫步",
-            desc: "順著溪谷步道一路緩步下坡走至「阪急箕面站」（下坡輕鬆約 40-50 分鐘，沿途品嚐現炸楓葉天婦羅）。",
-            tag: "下坡散策",
-            tagColor: "bg-teal-100 text-teal-800 border border-teal-200",
-            mapQuery: "Minoh Park"
-          },
-          {
-            time: "16:00 - 18:30",
-            title: "阿倍野 HARUKAS 300 展望台（捕捉金色夕陽）",
-            desc: "搭車回天王寺站，登上 300 公尺高的 HARUKAS 展望台。於西側全景玻璃前欣賞落入大阪灣與六甲山的壯麗夕陽與都會天際線夜景！",
-            tag: "絕景夕照",
-            tagColor: "bg-orange-100 text-orange-800 border border-orange-200",
-            mapQuery: "Abeno Harukas 300"
-          },
-          {
-            time: "18:30 - 20:30",
-            title: "散步至新世界商圈 ＆ 通天閣夜景",
-            desc: "從阿倍野向北散步 10-15 分鐘到新世界。打卡夜晚招牌燈光通明的通天閣，晚餐品嚐元祖串炸（八重勝或達摩串炸）。",
-            tag: "下町美食",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Tsutenkaku"
-          }
-        ],
-        tips: "💡 箕面步道走「勝尾寺搭車到瀑布 → 一路往下坡走到箕面站」是最省體力的順行路線！"
-      },
-      {
-        day: 4,
-        date: "12/13 (六)",
-        title: "神戶異國風情散策 ＆ 港灣夜景 ⚓",
-        badge: "海港風華 🌊",
-        traffic: "動物園前/天王寺站搭御堂筋線至「梅田站」 → 轉乘 JR 新快速或阪急神戶線至「神戶三宮站」（總車程約 50 分鐘）。",
-        points: [
-          {
-            time: "09:30 - 12:00",
-            title: "北野異人館街洋館散步",
-            desc: "漫步神戶山側坡道，參觀風見雞館、萌黃之館與百年木造洋房星巴克。",
-            tag: "異國建築",
-            tagColor: "bg-indigo-100 text-indigo-800 border border-indigo-200",
-            mapQuery: "Kitano Ijinkan-Gai Kobe"
-          },
-          {
-            time: "12:00 - 13:30",
-            title: "神戶牛排午餐 / 在地洋食",
-            desc: "三宮市區品嚐名聞遐邇的正宗神戶牛鐵板燒或神戶洋食炸牛排。",
-            tag: "頂級神戶牛",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Kobe Sannomiya Station"
-          },
-          {
-            time: "13:30 - 16:30",
-            title: "生田神社 → 南京町中華街 → 舊居留地",
-            desc: "造訪求良緣的生田神社，穿過南京町中華街，感受神戶舊居留地的典雅歐風洋行街景。",
-            tag: "文青散步",
-            tagColor: "bg-purple-100 text-purple-800 border border-purple-200",
-            mapQuery: "Ikuta Jinja Kobe"
-          },
-          {
-            time: "17:00 - 19:30",
-            title: "神戶港美利堅公園 ＆ Harborland umie",
-            desc: "欣賞神戶港塔（Port Tower）夜景，漫步海港商場購物，隨後搭車返回大阪。",
-            tag: "港灣夜景",
-            tagColor: "bg-sky-100 text-sky-800 border border-sky-200",
-            mapQuery: "Kobe Port Tower"
-          }
-        ],
-        tips: "💡 神戶牛名店午間套餐 CP 值最高，建議出發前事先線上訂位！"
-      },
-      {
-        day: 5,
-        date: "12/14 (日)",
-        title: "京都三大名勝全攻略（伏見稻荷 → 清水寺 → 金閣寺） ⛩️",
-        badge: "古都風雅 ✨",
+        day: 2, date: "12/11 (四)", title: "京都三大名勝全攻略（伏見稻荷 → 清水寺 → 金閣寺） ⛩️", badge: "古都風雅 ✨",
         traffic: "去程搭御堂筋線至淀屋橋轉京阪電車；回程京都站搭乘【JR 特急 Haruka】直達天王寺（約 45 分鐘）。",
         points: [
-          {
-            time: "07:00 - 09:30",
-            title: "伏見稻荷大社（清晨千本鳥居）",
-            desc: "一早 08:00 前抵達避開人潮，漫步穿梭朱紅色千本鳥居至奧社奉拜所，清晨日光灑落拍照最美！",
-            tag: "早鳥朝聖",
-            tagColor: "bg-rose-100 text-rose-800 border border-rose-200",
-            mapQuery: "Fushimi Inari Taisha Kyoto"
-          },
-          {
-            time: "09:30 - 13:00",
-            title: "清水寺 ＆ 二年坂、三年坂漫遊",
-            desc: "搭京阪電車至清水五條前往清水寺，參拜清水舞台與音羽之瀧，走訪石板古街並享用京都午餐與抹茶甜品。",
-            tag: "世界遺產",
-            tagColor: "bg-orange-100 text-orange-800 border border-orange-200",
-            mapQuery: "Kiyomizu-dera Kyoto"
-          },
-          {
-            time: "13:00 - 15:30",
-            title: "鹿苑寺金閣寺（下午夕照倒影最璀璨）",
-            desc: "搭車前往金閣寺（建議 7 人分搭兩台計程車約 35 分節省時間），下午光線正對舍利殿，金箔倒映於鏡湖池耀眼奪目！",
-            tag: "金箔舍利殿",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Kinkaku-ji Temple Kyoto"
-          },
-          {
-            time: "16:00 - 19:00",
-            title: "京都車站採買 ＆ Haruka 特急直達天王寺",
-            desc: "搭公車直達京都站，地下街 Porta 享用拉麵或採買生八橋伴手禮，搭乘 Haruka 一車直達天王寺超輕鬆。",
-            tag: "舒適返程",
-            tagColor: "bg-indigo-100 text-indigo-800 border border-indigo-200",
-            mapQuery: "Kyoto Station"
-          }
-        ],
-        tips: "💡 清水寺到金閣寺跨度較長，團員 7 人一起搭兩台計程車能省下至少 40 分鐘轉車時間！"
+          { time: "07:00 - 09:30", title: "伏見稻荷大社（清晨千本鳥居）", desc: "一早 08:00 前抵達避開人潮，漫步穿梭朱紅色千本鳥居至奧社奉拜所，清晨日光灑落拍照最美！", tag: "早鳥朝聖", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Fushimi Inari Taisha Kyoto" },
+          { time: "09:30 - 13:00", title: "清水寺 ＆ 二年坂、三年坂漫遊", desc: "搭京阪電車至清水五條前往清水寺，參拜清水舞台與音羽之瀧，走訪石板古街並享用京都午餐與抹茶甜品。", tag: "世界遺產", tagColor: "bg-orange-100 text-orange-800 border border-orange-200", mapQuery: "Kiyomizu-dera Kyoto" },
+          { time: "13:00 - 15:30", title: "鹿苑寺金閣寺（下午夕照倒影最璀璨）", desc: "搭車前往金閣寺（建議 7 人分搭兩台計程車約 35 分節省時間），下午光線正對舍利殿，金箔倒映於鏡湖池耀眼奪目！", tag: "金箔舍利殿", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Kinkaku-ji Temple Kyoto" },
+          { time: "16:00 - 19:00", title: "京都車站採買 ＆ Haruka 特急直達天王寺", desc: "搭公車直達京都站，地下街 Porta 享用拉麵或採買生八橋伴手禮，搭乘 Haruka 一車直達天王寺超輕鬆。", tag: "舒適返程", tagColor: "bg-indigo-100 text-indigo-800 border border-indigo-200", mapQuery: "Kyoto Station" }
+        ], tips: "💡 清水寺到金閣寺跨度較長，團員 7 人一起搭兩台計程車能省下至少 40 分鐘轉車時間！"
       },
       {
-        day: 6,
-        date: "12/15 (一)",
-        title: "大阪經典地標 ＆ 心齋橋道頓堀逛街採購 🛍️",
-        badge: "城市漫遊 ＆ 大血拼 🛒",
-        traffic: "全程搭乘大阪地下鐵（谷町線、千日前線、御堂筋線），距離住處極近，交通時間短。",
+        day: 3, date: "12/12 (五)", title: "北攝自然散策 ＆ 阿倍野 HARUKAS 夕陽 ＆ 通天閣宵夜", badge: "絕景夕照 ＆ 紅葉 🍁",
+        traffic: "動物園前/天王寺站搭御堂筋線（直通北大阪急行）一車直達「箕面萱野站」；下午回天王寺正好趕上金色日落。",
         points: [
-          {
-            time: "09:00 - 11:30",
-            title: "大阪城公園 ＆ 天守閣登頂",
-            desc: "搭地鐵直達谷町四丁目站，走訪護城河巨石陣，登上天守閣俯瞰大阪城全景。",
-            tag: "歷史地標",
-            tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200",
-            mapQuery: "Osaka Castle"
-          },
-          {
-            time: "11:30 - 13:30",
-            title: "黑門市場海鮮 或 難波名店午餐",
-            desc: "搭地鐵至日本橋站，品嚐烤扇貝、海膽、黑毛和牛串燒或難波在地老牌美食。",
-            tag: "大阪廚房",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "Kuromon Ichiba Market Osaka"
-          },
-          {
-            time: "13:30 - 20:30",
-            title: "道頓堀打卡 ＆ 心齋橋購物狂歡",
-            desc: "道頓堀與固力果跑跑人看板合照，集中在心齋橋筋商店街採購藥妝、家電、潮牌服飾，晚餐品嚐大阪燒或日式拉麵。",
-            tag: "血拼重點",
-            tagColor: "bg-purple-100 text-purple-800 border border-purple-200",
-            mapQuery: "Dotonbori Glico Sign"
-          },
-          {
-            time: "20:30 以後",
-            title: "搭御堂筋線回住宿地（6分鐘）整理行李",
-            desc: "搭車回到動物園前/天王寺站，回飯店打包滿滿的戰利品，準備隔天奈良小鹿與返台手續。",
-            tag: "打包整備",
-            tagColor: "bg-slate-100 text-slate-700 border border-slate-200",
-            mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka"
-          }
-        ],
-        tips: "💡 藥妝免稅記得攜帶護照本體；大件戰利品可先拿回飯店放置，地鐵回飯店只要 6-7 分鐘！"
+          { time: "08:30 - 09:30", title: "搭御堂筋線一車直達箕面萱野站", desc: "從動物園前站搭乘地下鐵御堂筋線直通北大阪急行，免轉車直達終點「箕面萱野站」（約 40 分鐘）。", tag: "地鐵直達", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Minoh-kayano Station" },
+          { time: "09:30 - 11:30", title: "勝尾寺參拜祈福（滿山紅色達摩）", desc: "箕面萱野站前轉搭阪急公車直達勝尾寺。參拜祈求勝運，拍攝整面壮觀的紅色達摩不倒翁牆。", tag: "名剎求運", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Katsuo-ji Temple" },
+          { time: "11:30 - 12:30", title: "箕面大瀑布欣賞清涼飛瀑", desc: "搭車至箕面大瀑布，欣賞落差 33 公尺的壯麗飛瀑與清澈溪谷。", tag: "自然奇景", tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200", mapQuery: "Minoh Waterfall" },
+          { time: "12:30 - 14:00", title: "箕面公園溪畔步道輕鬆下坡漫步", desc: "順著溪谷步道一路緩步下坡走至「阪急箕面站」（下坡輕鬆約 40-50 分鐘，沿途品嚐現炸楓葉天婦羅）。", tag: "下坡散策", tagColor: "bg-teal-100 text-teal-800 border border-teal-200", mapQuery: "Minoh Park" },
+          { time: "16:00 - 18:30", title: "阿倍野 HARUKAS 300 展望台（捕捉金色夕陽）", desc: "搭車回天王寺站，登上 300 公尺高的 HARUKAS 展望台。於西側全景玻璃前欣賞落入大阪灣與六甲山的壯麗夕陽與都會天際線夜景！", tag: "絕景夕照", tagColor: "bg-orange-100 text-orange-800 border border-orange-200", mapQuery: "Abeno Harukas 300" },
+          { time: "18:30 - 20:30", title: "散步至新世界商圈 ＆ 通天閣夜景", desc: "從阿倍野向北散步 10-15 分鐘到新世界。打卡夜晚招牌燈光通明的通天閣，晚餐品嚐元祖串炸（八重勝或達摩串炸）。", tag: "下町美食", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Tsutenkaku" }
+        ], tips: "💡 箕面步道走「勝尾寺搭車到瀑布 → 一路往下坡走到箕面站」是最省體力的順行路線！"
       },
       {
-        day: 7,
-        date: "12/16 (二)",
-        title: "奈良公園餵鹿 → 取行李 → 關西機場（19:00起飛） 🦌",
-        badge: "小鹿互動 ＆ 平安返台 🛫",
+        day: 4, date: "12/13 (六)", title: "神戶異國風情散策 ＆ 港灣夜景 ⚓", badge: "海港風華 🌊",
+        traffic: "動物園前/天王寺站搭御堂筋線至「梅田站」 → 轉乘 JR 新快速或阪急神戶線至「神戶三宮站」（總車程約 50 分鐘）。",
+        points: [
+          { time: "09:30 - 12:00", title: "北野異人館街洋館散步", desc: "漫步神戶山側坡道，參觀風見雞館、萌黃之館與百年木造洋房星巴克。", tag: "異國建築", tagColor: "bg-indigo-100 text-indigo-800 border border-indigo-200", mapQuery: "Kitano Ijinkan-Gai Kobe" },
+          { time: "12:00 - 13:30", title: "神戶牛排午餐 / 在地洋食", desc: "三宮市區品嚐名聞遐邇的正宗神戶牛鐵板燒或神戶洋食炸牛排。", tag: "頂級神戶牛", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Kobe Sannomiya Station" },
+          { time: "13:30 - 16:30", title: "生田神社 → 南京町中華街 → 舊居留地", desc: "造訪求良緣的生田神社，穿過南京町中華街，感受神戶舊居留地的典雅歐風洋行街景。", tag: "文青散步", tagColor: "bg-purple-100 text-purple-800 border border-purple-200", mapQuery: "Ikuta Jinja Kobe" },
+          { time: "17:00 - 19:30", title: "神戶港美利堅公園 ＆ Harborland umie", desc: "欣賞神戶港塔（Port Tower）夜景，漫步海港商場購物，隨後搭車返回大阪。", tag: "港灣夜景", tagColor: "bg-sky-100 text-sky-800 border border-sky-200", mapQuery: "Kobe Port Tower" }
+        ], tips: "💡 神戶牛名店午間套餐 CP 值最高，建議出發前事先線上訂位！"
+      },
+      {
+        day: 5, date: "12/14 (日)", title: "日本環球影城（USJ）全日衝刺 🍄", badge: "全日狂歡 🎉",
+        traffic: "JR 天王寺站搭【JR 大阪環狀線】至「西九條站」 → 轉乘【JR 櫻島線（夢咲線）】至「環球城站（Universal-City）」，車程約 25 分鐘。",
+        points: [
+          { time: "07:00 - 08:30", title: "一早出發 ＆ 排隊入園衝刺", desc: "從住宿地出發直奔 USJ，比表定開園時間提前抵達門口排隊，善用官方 App 搶抽超級任天堂世界區域整理券。", tag: "主題樂園", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Universal Studios Japan" },
+          { time: "白天全日", title: "USJ 沉浸式人氣設施狂歡", desc: "超級任天堂世界（瑪利歐賽車、能量手環挑戰）、哈利波特魔法世界（禁忌之旅）、飛天翼龍、小小兵樂園狂歡！", tag: "人氣設施", tagColor: "bg-purple-100 text-purple-800 border border-purple-200", mapQuery: "Universal Studios Japan" },
+          { time: "18:30 - 20:30", title: "Universal CityWalk 晚餐與限定紀念品", desc: "出園後於 CityWalk 享用晚餐（大阪燒、炸豬排或拉麵），採買限定伴手禮。", tag: "商場美食", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Universal CityWalk Osaka" },
+          { time: "20:30 以後", title: "搭 JR 返回住宿地休息", desc: "搭乘 JR 原路經西九條轉乘返回天王寺，回飯店泡澡放鬆修復雙腿。", tag: "休息", tagColor: "bg-slate-100 text-slate-700 border border-slate-200", mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka" }
+        ], tips: "💡 園區內手機消耗電量極快，必備 1-2 顆行動電源；中午可提前至 11:00 前用餐避開尖峰排隊。"
+      },
+      {
+        day: 6, date: "12/15 (一)", title: "大阪經典地標 ＆ 難波八阪神社 ＆ 心齋橋採購 🛍️", badge: "吸金祈福 ＆ 大血拼 🦁",
+        traffic: "全程搭乘大阪地下鐵（谷町線、千日前線、御堂筋線），距離住處極近，交通便利。",
+        points: [
+          { time: "09:00 - 11:30", title: "大阪城公園 ＆ 天守閣登頂", desc: "搭地鐵直達谷町四丁目站，走訪護城河巨石陣，登上天守閣俯瞰大阪城全景。", tag: "歷史地標", tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200", mapQuery: "Osaka Castle" },
+          { time: "11:45 - 12:45", title: "難波八阪神社（巨型獅子殿吸走厄運招好運）", desc: "搭地鐵前往難波站步行約 6 分鐘抵達。打卡高達 12 公尺的震撼巨型獅子頭殿，相傳張開的大口能把厄運吸走、招來勝利與財運！", tag: "招財必去", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Namba Yasaka Jinja Osaka" },
+          { time: "12:45 - 14:15", title: "黑門市場海鮮 或 難波名店午餐", desc: "散步至黑門市場品嚐現烤扇貝、海膽、黑毛和牛串燒，或享用難波在地排隊美食。", tag: "大阪廚房", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "Kuromon Ichiba Market Osaka" },
+          { time: "14:15 - 20:30", title: "道頓堀打卡 ＆ 心齋橋購物狂歡", desc: "道頓堀與固力果跑跑人看板合照，集中在心齋橋筋商店街採購藥妝、家電、潮牌服飾，晚餐品嚐大阪燒或日式拉麵。", tag: "血拼重點", tagColor: "bg-purple-100 text-purple-800 border border-purple-200", mapQuery: "Dotonbori Glico Sign" },
+          { time: "20:30 以後", title: "搭御堂筋線回住宿地（6分鐘）整理行李", desc: "搭車回到動物園前/天王寺站，回飯店打包滿滿的戰利品，準備隔天奈良小鹿與返台手續。", tag: "打包整備", tagColor: "bg-slate-100 text-slate-700 border border-slate-200", mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka" }
+        ], tips: "💡 難波八阪神社御守非常精美，獅子造型勝守特別熱門；買完的大件戰利品可先搭地鐵拿回飯店放！"
+      },
+      {
+        day: 7, date: "12/16 (二)", title: "奈良經典散策（東大寺 → 春日大社 → 水谷茶屋 → 奈良公園 → 中谷堂 → 大佛布丁） 🦌", badge: "順暢漫遊 ＆ 平安返台 🛫",
         traffic: "JR 天王寺站搭【JR 大和路快速】直達 JR 奈良（35 分）；下午從天王寺搭【JR 特急 Haruka】直達關西機場（35 分）。",
         points: [
-          {
-            time: "08:30 - 09:30",
-            title: "退房寄放行李 ＆ 大和路快速直奔奈良",
-            desc: "辦理飯店退房，行李寄放櫃檯。從 JR 天王寺站搭乘大和路快速約 35 分鐘一車直達奈良。",
-            tag: "輕裝出行",
-            tagColor: "bg-amber-100 text-amber-800 border border-amber-200",
-            mapQuery: "JR Nara Station"
-          },
-          {
-            time: "09:30 - 13:00",
-            title: "奈良公園餵小鹿 ＆ 世界遺產東大寺",
-            desc: "購買鹿仙貝與親人小鹿互動拍照，參拜東大寺大佛殿感受雄偉木造建築之美，走訪春日大社表參道。",
-            tag: "小鹿互動",
-            tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200",
-            mapQuery: "Todai-ji Temple Nara"
-          },
-          {
-            time: "13:00 - 14:15",
-            title: "奈良町老街漫遊 ＆ 午餐（柿葉壽司）",
-            desc: "漫步富有江戶昭和風情的奈良町町家古街，品嚐名產柿葉壽司與日式釜飯。",
-            tag: "老街名物",
-            tagColor: "bg-orange-100 text-orange-800 border border-orange-200",
-            mapQuery: "Naramachi"
-          },
-          {
-            time: "14:15 - 15:30",
-            title: "搭車返回飯店領取行李",
-            desc: "搭 JR 大和路快速回到天王寺站，至飯店領回寄存行李並稍作整頓，準備出發前往機場。",
-            tag: "領取行李",
-            tagColor: "bg-slate-100 text-slate-700 border border-slate-200",
-            mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka"
-          },
-          {
-            time: "15:30 - 19:00",
-            title: "直奔關西機場（KIX）辦理登機出境 ＆ 飛機起飛",
-            desc: "16:00 前搭乘 Haruka 直達關西機場（約 16:35 抵達，距 19:00 起飛約 2.5 小時）。辦理托運、出關採買免稅名產伴手禮，搭乘 19:00 班機平安返家！",
-            tag: "機場起飛",
-            tagColor: "bg-rose-100 text-rose-800 border border-rose-200",
-            mapQuery: "Kansai International Airport"
-          }
-        ],
-        tips: "💡 19:00 起飛的班機，最晚需於 16:30 抵達機場；天王寺發車的 Haruka 指定席省時舒適又準點！"
+          { time: "08:30 - 09:30", title: "退房寄放行李 ＆ 大和路快速直奔奈良", desc: "辦理飯店退房，行李寄放櫃檯。從 JR 天王寺站搭乘大和路快速約 35 分鐘一車直達 JR 奈良站。", tag: "輕裝出行", tagColor: "bg-amber-100 text-amber-800 border border-amber-200", mapQuery: "JR Nara Station" },
+          { time: "09:30 - 11:15", title: "世界文化遺產 東大寺（大佛殿）", desc: "從車站搭公車至東大寺大佛殿。參拜全世界最大的木造古建築與宏偉盧舍那大佛，走過柱洞祈求平安好運。", tag: "世界遺產", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Todai-ji Temple Nara" },
+          { time: "11:15 - 12:30", title: "春日大社（石燈籠林立的朱紅名剎）", desc: "順著綠意步道漫步前往春日大社，走訪千座長滿青苔的石燈籠與朱紅色迴廊，沿途森林小鹿靜謐祥和。", tag: "古木林道", tagColor: "bg-emerald-100 text-emerald-800 border border-emerald-200", mapQuery: "Kasuga Taisha Nara" },
+          { time: "12:30 - 13:45", title: "午餐精選：水谷茶屋（如走入童話的茅草屋茶屋）", desc: "位於春日大社前往若草山的水谷川旁，被紅葉與溪流包圍的百年茅草屋。品嚐招牌清爽烏龍麵、蕨餅、甜酒與抹茶，氣氛極佳！", tag: "秘境午餐", tagColor: "bg-orange-100 text-orange-800 border border-orange-200", mapQuery: "Mizutani Chaya Nara" },
+          { time: "13:45 - 14:45", title: "奈良公園草坪悠閒餵小鹿", desc: "午後步道緩步走回奈良公園大草坪，買鹿仙貝和小鹿鞠躬互動拍照，享受午後愜意陽光。", tag: "小鹿互動", tagColor: "bg-teal-100 text-teal-800 border border-teal-200", mapQuery: "Nara Park" },
+          { time: "14:45 - 15:45", title: "中谷堂現搗麻糬 ＆ 商店街採買「大佛布丁」", desc: "步行至近鐵奈良站前商店街。欣賞中谷堂高速拍打搗麻糬的職人表演並品嚐熱呼呼的紅豆艾草麻糬，隨後在近鐵車站地下街購買名產「大佛布丁（大仏プリン）」！", tag: "排隊甜點", tagColor: "bg-purple-100 text-purple-800 border border-purple-200", mapQuery: "Nakatanidou Nara" },
+          { time: "15:45 - 16:30", title: "搭車返回飯店領取行李", desc: "搭 JR 大和路快速返回天王寺站，至飯店領回寄存行李並稍作整頓，準備出發前往機場。", tag: "領取行李", tagColor: "bg-slate-100 text-slate-700 border border-slate-200", mapQuery: "1-chōme-13-7 Taishi, Nishinari Ward, Osaka" },
+          { time: "16:30 - 19:00", title: "直奔關西機場（KIX）辦理登機出境 ＆ 飛機起飛", desc: "搭乘 Haruka 直達關西機場（約 17:05 抵達，距 19:00 起飛約 2 小時）。辦理托運、出關採買免稅名產伴手禮，搭乘 19:00 班機平安返家！", tag: "機場起飛", tagColor: "bg-rose-100 text-rose-800 border border-rose-200", mapQuery: "Kansai International Airport" }
+        ], tips: "💡 依照「東大寺 → 春日大社 → 水谷茶屋午餐 → 奈良公園 → 中谷堂 → 近鐵街採買」一路順行下坡步行最不費力！"
       }
     ];
-
-    let currentMembers = ["志", "大頭", "丹", "老闆", "阿瑋", "信義房屋", "胖子"];
-    let exchangeRate = 0.215;
-    let expenses = [
-      {
-        id: "exp-1",
-        title: "USJ 門票與快速通關預訂",
-        category: "門票體驗",
-        currency: "JPY",
-        amount: 67200,
-        amountTwd: 14448,
-        payer: "老闆",
-        splits: ["志", "大頭", "丹", "老闆", "阿瑋", "信義房屋", "胖子"],
-        date: "2026-12-11"
-      },
-      {
-        id: "exp-2",
-        title: "勝尾寺入場與祈福達摩",
-        category: "門票體驗",
-        currency: "JPY",
-        amount: 3500,
-        amountTwd: 753,
-        payer: "大頭",
-        splits: ["志", "大頭", "丹", "老闆", "阿瑋", "信義房屋", "胖子"],
-        date: "2026-12-12"
-      },
-      {
-        id: "exp-3",
-        title: "新世界八重勝串炸晚餐與啤酒",
-        category: "餐飲美食",
-        currency: "JPY",
-        amount: 15400,
-        amountTwd: 3311,
-        payer: "志",
-        splits: ["志", "大頭", "丹", "老闆", "阿瑋", "信義房屋", "胖子"],
-        date: "2026-12-12"
-      },
-      {
-        id: "exp-4",
-        title: "清水寺前往金閣寺計程車資（兩台車）",
-        category: "交通車資",
-        currency: "JPY",
-        amount: 8400,
-        amountTwd: 1806,
-        payer: "阿瑋",
-        splits: ["志", "大頭", "丹", "老闆", "阿瑋", "信義房屋", "胖子"],
-        date: "2026-12-14"
-      }
-    ];
-    let expenseChartInstance = null;
 
     function switchMainTab(tab) {
       document.getElementById('section-itinerary').classList.add('hidden');
-      document.getElementById('section-finance').classList.add('hidden');
       document.getElementById('section-tools').classList.add('hidden');
 
       const btnItinerary = document.getElementById('nav-itinerary-btn');
-      const btnFinance = document.getElementById('nav-finance-btn');
       const btnTools = document.getElementById('nav-tools-btn');
 
-      [btnItinerary, btnFinance, btnTools].forEach(b => {
-        b.className = "px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 text-slate-600 hover:text-slate-900 cute-btn";
+      [btnItinerary, btnTools].forEach(b => {
+        b.className = "px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1 text-slate-600 hover:text-slate-900 cute-btn";
       });
 
       if (tab === 'itinerary') {
         document.getElementById('section-itinerary').classList.remove('hidden');
-        btnItinerary.className = "px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm font-black cute-btn";
-      } else if (tab === 'finance') {
-        document.getElementById('section-finance').classList.remove('hidden');
-        btnFinance.className = "px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm font-black cute-btn";
-        renderExpenses();
+        btnItinerary.className = "px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm font-black cute-btn";
       } else if (tab === 'tools') {
         document.getElementById('section-tools').classList.remove('hidden');
-        btnTools.className = "px-3 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm font-black cute-btn";
+        btnTools.className = "px-3.5 py-1.5 rounded-xl transition-all flex items-center gap-1 bg-white text-rose-600 shadow-sm font-black cute-btn";
       }
     }
 
@@ -1234,7 +660,6 @@
             </a>
           </div>
 
-          <!-- Traffic Summary Box -->
           <div class="bg-gradient-to-r from-amber-50 to-orange-50 border-2 border-orange-200 rounded-2xl p-4 flex items-start gap-3.5">
             <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-amber-500 to-rose-500 text-white flex-shrink-0 flex items-center justify-center text-lg mt-0.5 shadow-sm">
               <i class="ph-bold ph-train"></i>
@@ -1245,12 +670,10 @@
             </div>
           </div>
 
-          <!-- Timeline Points -->
           <div class="pt-2">
             ${pointsHtml}
           </div>
 
-          <!-- Tips Footer -->
           <div class="bg-amber-50/80 border-2 border-amber-200/80 rounded-2xl p-4 text-xs text-amber-950 font-bold flex items-center gap-2">
             <span>${data.tips}</span>
           </div>
@@ -1258,407 +681,16 @@
       `;
     }
 
-    function updateExchangeRate(val) {
-      const parsed = parseFloat(val);
-      if (!isNaN(parsed) && parsed > 0) {
-        exchangeRate = parsed;
-        document.getElementById('calc-rate-badge').textContent = parsed.toFixed(3);
-        expenses.forEach(e => {
-          if (e.currency === 'JPY') {
-            e.amountTwd = Math.round(e.amount * exchangeRate);
-          } else {
-            e.amountTwd = e.amount;
-          }
-        });
-        renderExpenses();
-        showToast(`匯率已更新為 1 JPY = ${parsed} TWD 🌸`);
-      }
-    }
-
-    function renderExpenses() {
-      let totalJpy = 0;
-      let totalTwd = 0;
-
-      expenses.forEach(e => {
-        if (e.currency === 'JPY') {
-          totalJpy += e.amount;
-          totalTwd += (e.amountTwd || Math.round(e.amount * exchangeRate));
-        } else {
-          totalTwd += e.amount;
-          totalJpy += Math.round(e.amount / exchangeRate);
-        }
-      });
-
-      document.getElementById('total-jpy-display').textContent = `¥${totalJpy.toLocaleString()}`;
-      document.getElementById('total-twd-display').textContent = `≈ NT$${Math.round(totalTwd).toLocaleString()}`;
-      document.getElementById('member-count-display').textContent = `${currentMembers.length} 人`;
-      document.getElementById('member-names-display').textContent = currentMembers.join(', ');
-      document.getElementById('expense-count-tag').textContent = `${expenses.length} 筆記錄`;
-
-      const listEl = document.getElementById('expense-list');
-      const emptyEl = document.getElementById('expense-list-empty');
-
-      if (expenses.length === 0) {
-        listEl.innerHTML = '';
-        emptyEl.classList.remove('hidden');
-      } else {
-        emptyEl.classList.add('hidden');
-        listEl.innerHTML = expenses.map(item => {
-          const splitBadge = item.splits.length === currentMembers.length 
-            ? '全體 7 人平分' 
-            : `${item.splits.length}人分攤 (${item.splits.join(', ')})`;
-          const displayMainAmount = item.currency === 'JPY' ? `¥${item.amount.toLocaleString()}` : `NT$${item.amount.toLocaleString()}`;
-          const displaySubAmount = item.currency === 'JPY' ? `≈ NT$${Math.round(item.amountTwd || (item.amount * exchangeRate)).toLocaleString()}` : `≈ ¥${Math.round(item.amount / exchangeRate).toLocaleString()}`;
-
-          return `
-            <div class="p-3.5 rounded-2xl border-2 border-orange-100 bg-orange-50/40 hover:bg-orange-50/80 flex items-center justify-between gap-3 transition-all">
-              <div class="flex items-center gap-3 min-w-0">
-                <div class="w-10 h-10 rounded-2xl bg-white border-2 border-orange-200 flex items-center justify-center text-xl flex-shrink-0 shadow-sm">
-                  ${getCategoryIcon(item.category)}
-                </div>
-                <div class="min-w-0">
-                  <div class="flex items-center gap-2">
-                    <h4 class="text-sm font-black text-slate-900 truncate">${item.title}</h4>
-                    <span class="text-[10px] px-2 py-0.5 rounded-full bg-white border border-orange-200 text-amber-800 font-extrabold">${item.category}</span>
-                  </div>
-                  <div class="text-xs text-slate-500 mt-1 flex flex-wrap items-center gap-2">
-                    <span class="font-black text-rose-600">代墊人：${item.payer}</span>
-                    <span class="text-orange-300">•</span>
-                    <span class="text-slate-500 truncate font-medium">${splitBadge}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="text-right flex-shrink-0 flex items-center gap-2">
-                <div>
-                  <div class="text-sm font-black text-slate-900">${displayMainAmount}</div>
-                  <div class="text-[11px] text-rose-500 font-bold">${displaySubAmount}</div>
-                </div>
-                <button onclick="deleteExpense('${item.id}')" title="刪除" class="text-slate-300 hover:text-rose-500 p-1.5 rounded-xl hover:bg-rose-50 transition-colors">
-                  <i class="ph-bold ph-trash text-base"></i>
-                </button>
-              </div>
-            </div>
-          `;
-        }).join('');
-      }
-
-      renderAnalyticsChart();
-      calculateSettlement();
-    }
-
-    function getCategoryIcon(cat) {
-      switch(cat) {
-        case '餐飲美食': return '🍜';
-        case '交通車資': return '🚇';
-        case '門票體驗': return '🎟️';
-        case '購物伴手禮': return '🛍️';
-        default: return '🏨';
-      }
-    }
-
-    function renderAnalyticsChart() {
-      const categoryTotals = {};
-      expenses.forEach(e => {
-        const twdVal = e.currency === 'JPY' ? Math.round(e.amount * exchangeRate) : e.amount;
-        categoryTotals[e.category] = (categoryTotals[e.category] || 0) + twdVal;
-      });
-
-      const labels = Object.keys(categoryTotals);
-      const data = Object.values(categoryTotals);
-      const emptyMsg = document.getElementById('chart-empty-msg');
-      const summaryList = document.getElementById('category-summary-list');
-
-      if (labels.length === 0) {
-        if (expenseChartInstance) expenseChartInstance.destroy();
-        emptyMsg.classList.remove('hidden');
-        summaryList.innerHTML = '';
-        return;
-      }
-
-      emptyMsg.classList.add('hidden');
-      const colors = ['#f97316', '#f43f5e', '#10b981', '#f59e0b', '#8b5cf6'];
-
-      if (expenseChartInstance) {
-        expenseChartInstance.destroy();
-      }
-
-      const ctx = document.getElementById('expenseChart').getContext('2d');
-      expenseChartInstance = new Chart(ctx, {
-        type: 'doughnut',
-        data: {
-          labels: labels,
-          datasets: [{
-            data: data,
-            backgroundColor: colors.slice(0, labels.length),
-            borderWidth: 3,
-            borderColor: '#ffffff',
-          }]
-        },
-        options: {
-          responsive: true,
-          maintainAspectRatio: false,
-          plugins: {
-            legend: { display: false }
-          },
-          cutout: '70%'
-        }
-      });
-
-      const totalVal = data.reduce((a, b) => a + b, 0);
-      summaryList.innerHTML = labels.map((lbl, idx) => {
-        const pct = totalVal > 0 ? Math.round((data[idx] / totalVal) * 100) : 0;
-        return `
-          <div class="flex items-center justify-between bg-orange-50/50 p-1.5 rounded-xl">
-            <span class="flex items-center gap-1.5 text-slate-700 font-bold">
-              <span class="w-3 h-3 rounded-full" style="background-color: ${colors[idx]}"></span>
-              ${lbl}
-            </span>
-            <span class="font-black text-slate-900">NT$${data[idx].toLocaleString()} (${pct}%)</span>
-          </div>
-        `;
-      }).join('');
-    }
-
-    function calculateSettlement() {
-      const balances = {};
-      currentMembers.forEach(m => balances[m] = 0);
-
-      expenses.forEach(item => {
-        const twdAmount = item.currency === 'JPY' ? Math.round(item.amount * exchangeRate) : item.amount;
-        if (balances[item.payer] !== undefined) {
-          balances[item.payer] += twdAmount;
-        }
-
-        const splitCount = item.splits.length;
-        if (splitCount > 0) {
-          const share = twdAmount / splitCount;
-          item.splits.forEach(member => {
-            if (balances[member] !== undefined) {
-              balances[member] -= share;
-            }
-          });
-        }
-      });
-
-      let debtors = [];
-      let creditors = [];
-
-      for (const [person, balance] of Object.entries(balances)) {
-        const rounded = Math.round(balance);
-        if (rounded < -1) {
-          debtors.push({ name: person, amount: -rounded });
-        } else if (rounded > 1) {
-          creditors.push({ name: person, amount: rounded });
-        }
-      }
-
-      debtors.sort((a, b) => b.amount - a.amount);
-      creditors.sort((a, b) => b.amount - a.amount);
-
-      const transactions = [];
-      let i = 0;
-      let j = 0;
-
-      while (i < debtors.length && j < creditors.length) {
-        const debtor = debtors[i];
-        const creditor = creditors[j];
-        const settleAmount = Math.min(debtor.amount, creditor.amount);
-
-        if (settleAmount > 0) {
-          transactions.push({
-            from: debtor.name,
-            to: creditor.name,
-            amountTwd: settleAmount,
-            amountJpy: Math.round(settleAmount / exchangeRate)
-          });
-        }
-
-        debtor.amount -= settleAmount;
-        creditor.amount -= settleAmount;
-
-        if (debtor.amount <= 1) i++;
-        if (creditor.amount <= 1) j++;
-      }
-
-      const container = document.getElementById('settlement-results');
-      if (transactions.length === 0) {
-        container.innerHTML = `
-          <div class="text-center py-4 text-amber-200 text-xs font-bold">
-            🎉 目前全員帳務已結清，沒有人欠錢囉！
-          </div>
-        `;
-      } else {
-        container.innerHTML = transactions.map(t => `
-          <div class="flex items-center justify-between p-3.5 rounded-2xl bg-white/10 border border-white/15">
-            <div class="flex items-center gap-2">
-              <span class="font-black text-amber-300 bg-amber-400/20 px-2.5 py-0.5 rounded-lg text-xs">${t.from}</span>
-              <span class="text-slate-300 text-xs flex items-center gap-1 font-bold">
-                應給付 <i class="ph-bold ph-arrow-right text-rose-400"></i>
-              </span>
-              <span class="font-black text-emerald-300 bg-emerald-400/20 px-2.5 py-0.5 rounded-lg text-xs">${t.to}</span>
-            </div>
-            <div class="text-right">
-              <div class="font-black text-white text-sm">NT$ ${t.amountTwd.toLocaleString()}</div>
-              <div class="text-[11px] text-amber-200/80 font-bold">≈ ¥ ${t.amountJpy.toLocaleString()}</div>
-            </div>
-          </div>
-        `).join('');
-      }
-    }
-
-    function toggleSettlementView() {
-      const el = document.getElementById('settlement-container');
-      const btn = document.getElementById('toggle-settle-btn');
-      if (el.classList.contains('hidden')) {
-        el.classList.remove('hidden');
-        btn.classList.add('bg-rose-50', 'border-rose-300', 'text-rose-700');
-        calculateSettlement();
-      } else {
-        el.classList.add('hidden');
-        btn.classList.remove('bg-rose-50', 'border-rose-300', 'text-rose-700');
-      }
-    }
-
-    function openAddExpenseModal() {
-      populatePayerAndSplitOptions();
-      document.getElementById('expense-form').reset();
-      document.getElementById('expense-modal').classList.remove('hidden');
-      document.getElementById('expense-modal').classList.add('flex');
-    }
-
-    function closeAddExpenseModal() {
-      document.getElementById('expense-modal').classList.add('hidden');
-      document.getElementById('expense-modal').classList.remove('flex');
-    }
-
-    function populatePayerAndSplitOptions() {
-      const payerSelect = document.getElementById('expense-payer');
-      payerSelect.innerHTML = currentMembers.map(m => `
-        <option value="${m}">${m}</option>
-      `).join('');
-
-      const splitContainer = document.getElementById('expense-split-members');
-      splitContainer.innerHTML = currentMembers.map(m => `
-        <label class="flex items-center gap-2 text-xs font-bold text-slate-700 cursor-pointer">
-          <input type="checkbox" name="split-member" value="${m}" checked class="rounded-lg border-orange-300 text-rose-500 focus:ring-rose-400 w-4 h-4">
-          <span>${m}</span>
-        </label>
-      `).join('');
-    }
-
-    function toggleAllSplitCheckboxes() {
-      const checkboxes = document.querySelectorAll('input[name="split-member"]');
-      const allChecked = Array.from(checkboxes).every(cb => cb.checked);
-      checkboxes.forEach(cb => cb.checked = !allChecked);
-    }
-
-    function handleSaveExpense(e) {
-      e.preventDefault();
-      const title = document.getElementById('expense-title').value.trim();
-      const category = document.getElementById('expense-category').value;
-      const currency = document.getElementById('expense-currency').value;
-      const amount = parseFloat(document.getElementById('expense-amount').value);
-      const payer = document.getElementById('expense-payer').value;
-
-      const checkedSplits = Array.from(document.querySelectorAll('input[name="split-member"]:checked')).map(cb => cb.value);
-
-      if (checkedSplits.length === 0) {
-        showToast('請至少勾選一位分攤成員！');
-        return;
-      }
-
-      if (isNaN(amount) || amount <= 0) {
-        showToast('請輸入有效金額！');
-        return;
-      }
-
-      const newExpense = {
-        id: 'exp-' + Date.now(),
-        title: title,
-        category: category,
-        currency: currency,
-        amount: amount,
-        amountTwd: currency === 'JPY' ? Math.round(amount * exchangeRate) : amount,
-        payer: payer,
-        splits: checkedSplits,
-        date: new Date().toISOString().split('T')[0]
-      };
-
-      expenses.unshift(newExpense);
-      renderExpenses();
-      closeAddExpenseModal();
-      showToast('已成功記錄開銷！🍡');
-    }
-
-    function deleteExpense(id) {
-      expenses = expenses.filter(e => e.id !== id);
-      renderExpenses();
-      showToast('已刪除開銷項目');
-    }
-
-    function manageMembersModal() {
-      renderMemberTags();
-      document.getElementById('member-modal').classList.remove('hidden');
-      document.getElementById('member-modal').classList.add('flex');
-    }
-
-    function closeMemberModal() {
-      document.getElementById('member-modal').classList.add('hidden');
-      document.getElementById('member-modal').classList.remove('flex');
-      renderExpenses();
-    }
-
-    function renderMemberTags() {
-      const container = document.getElementById('current-members-tags');
-      container.innerHTML = currentMembers.map(m => `
-        <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-orange-100 border border-orange-200 text-amber-900 text-xs font-black">
-          ${m}
-          ${currentMembers.length > 2 ? `<button onclick="removeMember('${m}')" class="hover:text-rose-500"><i class="ph-bold ph-x"></i></button>` : ''}
-        </span>
-      `).join('');
-    }
-
-    function addNewMember() {
-      const input = document.getElementById('new-member-name');
-      const val = input.value.trim();
-      if (!val) return;
-      if (currentMembers.includes(val)) {
-        showToast('成員姓名已存在');
-        return;
-      }
-      currentMembers.push(val);
-      input.value = '';
-      renderMemberTags();
-      showToast(`已新增成員：${val}`);
-    }
-
-    function removeMember(name) {
-      if (currentMembers.length <= 2) {
-        showToast('至少保留兩位成員以進行分帳！');
-        return;
-      }
-      currentMembers = currentMembers.filter(m => m !== name);
-      renderMemberTags();
-    }
-
     function convertCurrency(direction) {
+      const exchangeRate = 0.215;
       const jpyInput = document.getElementById('calc-jpy');
       const twdInput = document.getElementById('calc-twd');
-
       if (direction === 'jpy') {
         const jpy = parseFloat(jpyInput.value);
-        if (!isNaN(jpy)) {
-          twdInput.value = Math.round(jpy * exchangeRate);
-        } else {
-          twdInput.value = '';
-        }
+        twdInput.value = !isNaN(jpy) ? Math.round(jpy * exchangeRate) : '';
       } else {
         const twd = parseFloat(twdInput.value);
-        if (!isNaN(twd)) {
-          jpyInput.value = Math.round(twd / exchangeRate);
-        } else {
-          jpyInput.value = '';
-        }
+        jpyInput.value = !isNaN(twd) ? Math.round(twd / exchangeRate) : '';
       }
     }
 
@@ -1705,26 +737,8 @@
       document.body.removeChild(tempInput);
     }
 
-    function exportExpensesJSON() {
-      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify({ members: currentMembers, exchangeRate, expenses }, null, 2));
-      const downloadAnchor = document.createElement('a');
-      downloadAnchor.setAttribute("href", dataStr);
-      downloadAnchor.setAttribute("download", `osaka-trip-expenses-${new Date().toISOString().split('T')[0]}.json`);
-      document.body.appendChild(downloadAnchor);
-      downloadAnchor.click();
-      downloadAnchor.remove();
-      showToast('已匯出記帳 JSON 檔案！');
-    }
-
-    function resetExpensesPrompt() {
-      expenses = [];
-      renderExpenses();
-      showToast('已清空所有記帳明細！');
-    }
-
     window.addEventListener('DOMContentLoaded', () => {
       renderDay(1);
-      renderExpenses();
       animateLeaves();
     });
   </script>
